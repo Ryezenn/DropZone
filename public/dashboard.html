@@ -162,6 +162,84 @@
         </div>
       </section>
 
+      <!-- UPLOAD WEBSITE SECTION -->
+      <section id="section-upload-website" class="dashboard-section" style="display: none;">
+        <div class="dashboard-header">
+          <h2>Upload Website Project</h2>
+        </div>
+        <div class="form-container-card">
+          <form id="form-upload-website">
+            <div class="form-grid">
+              <div class="form-group">
+                <label for="web-title">Project Title *</label>
+                <input type="text" id="web-title" maxlength="80" placeholder="My Awesome Portfolio" required>
+              </div>
+              <div class="form-group">
+                <label for="web-url">Website URL *</label>
+                <input type="url" id="web-url" placeholder="https://myproject.com" required>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="web-description">Description *</label>
+              <textarea id="web-description" rows="4" maxlength="500" placeholder="Describe your website project, features, goals..." required></textarea>
+            </div>
+            <div class="form-grid">
+              <div class="form-group">
+                <label for="web-preview">Preview Image URL</label>
+                <input type="url" id="web-preview" placeholder="https://myproject.com/screenshot.png">
+              </div>
+              <div class="form-group">
+                <label for="web-tech">Tech Stack (comma separated)</label>
+                <input type="text" id="web-tech" placeholder="React, Node.js, Mongoose">
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="web-tags">Category Tags (comma separated)</label>
+              <input type="text" id="web-tags" placeholder="portfolio, landing-page, utility">
+            </div>
+            <div class="form-actions-row">
+              <button type="submit" class="btn-primary">Upload Project →</button>
+            </div>
+          </form>
+        </div>
+      </section>
+
+      <!-- UPLOAD FILE SECTION -->
+      <section id="section-upload-file" class="dashboard-section" style="display: none;">
+        <div class="dashboard-header">
+          <h2>Upload File Project</h2>
+        </div>
+        <div class="form-container-card">
+          <form id="form-upload-file">
+            <div class="form-group">
+              <label for="file-title">Project Title *</label>
+              <input type="text" id="file-title" maxlength="80" placeholder="Game Engine Source Code" required>
+            </div>
+            <div class="form-group">
+              <label for="file-description">Description *</label>
+              <textarea id="file-description" rows="4" maxlength="500" placeholder="Describe the contents of this file upload..." required></textarea>
+            </div>
+            <div class="form-group">
+              <label>Project File * (max 50MB)</label>
+              <div class="drag-drop-area" id="file-drag-drop-area">
+                <div class="drag-drop-icon">📁</div>
+                <div class="drag-drop-text">Drag & Drop file here or Click to select</div>
+                <div class="drag-drop-subtext">Allowed extensions: zip, rar, 7z, pdf, png, jpg, css, js, html, etc.</div>
+              </div>
+              <input type="file" id="file-upload-input" style="display: none;">
+              <div id="drag-drop-selected-name" class="feedback-text success" style="margin-top: 8px; font-weight: 700;"></div>
+            </div>
+            <div class="form-group">
+              <label for="file-tags">Tags (comma separated)</label>
+              <input type="text" id="file-tags" placeholder="source-code, template, asset">
+            </div>
+            <div class="form-actions-row">
+              <button type="submit" class="btn-primary">Upload File →</button>
+            </div>
+          </form>
+        </div>
+      </section>
+
     </main>
   </div>
 
@@ -169,89 +247,9 @@
        MODALS SECTION
        ========================================== -->
 
-  <!-- MODAL: UPLOAD WEBSITE -->
-  <div class="modal-overlay" id="modal-upload-website">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h3 class="modal-title">Upload Website</h3>
-        <button class="modal-close">&times;</button>
-      </div>
-      <form id="form-upload-website">
-        <div class="modal-body">
-          <div class="form-group">
-            <label for="web-title">Project Title *</label>
-            <input type="text" id="web-title" maxlength="80" placeholder="My Awesome Portfolio" required>
-          </div>
-          <div class="form-group">
-            <label for="web-description">Description *</label>
-            <textarea id="web-description" rows="3" maxlength="500" placeholder="Briefly describe the project, its goals, features..." required></textarea>
-          </div>
-          <div class="form-group">
-            <label for="web-url">Website URL *</label>
-            <input type="url" id="web-url" placeholder="https://myproject.com" required>
-          </div>
-          <div class="form-group">
-            <label for="web-preview">Preview Image URL</label>
-            <input type="url" id="web-preview" placeholder="https://myproject.com/screenshot.png">
-          </div>
-          <div class="form-group">
-            <label for="web-tech">Tech Stack (comma separated)</label>
-            <input type="text" id="web-tech" placeholder="React, Node.js, Mongoose">
-          </div>
-          <div class="form-group">
-            <label for="web-tags">Category Tags (comma separated)</label>
-            <input type="text" id="web-tags" placeholder="portfolio, landing-page, utility">
-          </div>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn-outline btn-modal-cancel">Cancel</button>
-          <button type="submit" class="btn-primary">Upload Project</button>
-        </div>
-      </form>
-    </div>
-  </div>
-
-  <!-- MODAL: UPLOAD FILE -->
-  <div class="modal-overlay" id="modal-upload-file">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h3 class="modal-title">Upload File</h3>
-        <button class="modal-close">&times;</button>
-      </div>
-      <form id="form-upload-file">
-        <div class="modal-body">
-          <div class="form-group">
-            <label for="file-title">Project Title *</label>
-            <input type="text" id="file-title" maxlength="80" placeholder="Game Engine Source Code" required>
-          </div>
-          <div class="form-group">
-            <label for="file-description">Description *</label>
-            <textarea id="file-description" rows="3" maxlength="500" placeholder="Briefly describe the contents of this file upload..." required></textarea>
-          </div>
-          
-          <div class="form-group">
-            <label>Project File * (max 50MB)</label>
-            <div class="drag-drop-area" id="file-drag-drop-area">
-              <div class="drag-drop-icon">📁</div>
-              <div class="drag-drop-text">Drag & Drop file here or Click to select</div>
-              <div class="drag-drop-subtext">Allowed extensions: zip, rar, 7z, pdf, png, jpg, css, js, html, etc.</div>
-            </div>
-            <input type="file" id="file-upload-input" style="display: none;">
-            <div id="drag-drop-selected-name" class="feedback-text success" style="margin-top: 8px; font-weight: 700;"></div>
-          </div>
-
-          <div class="form-group">
-            <label for="file-tags">Tags (comma separated)</label>
-            <input type="text" id="file-tags" placeholder="source-code, template, asset">
-          </div>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn-outline btn-modal-cancel">Cancel</button>
-          <button type="submit" class="btn-primary">Upload File</button>
-        </div>
-      </form>
-    </div>
-  </div>
+  <!-- DUMMY COMPATIBILITY MODALS FOR APP.JS -->
+  <div id="modal-upload-website" style="display: none;"></div>
+  <div id="modal-upload-file" style="display: none;"></div>
 
   <!-- MODAL: EDIT PROJECT -->
   <div class="modal-overlay" id="modal-edit-project">
@@ -327,6 +325,27 @@
             Toast.success('Logged out successfully!');
           }
           setTimeout(() => window.location.href = 'index.html', 1000);
+        });
+      }
+
+      // Auto redirect to projects tab on successful upload submit
+      const formWeb = document.getElementById('form-upload-website');
+      if (formWeb) {
+        formWeb.addEventListener('submit', () => {
+          setTimeout(() => {
+            const projectsTab = document.querySelector('.dashboard-menu-tab[data-section="projects"]');
+            if (projectsTab) projectsTab.click();
+          }, 800);
+        });
+      }
+
+      const formFile = document.getElementById('form-upload-file');
+      if (formFile) {
+        formFile.addEventListener('submit', () => {
+          setTimeout(() => {
+            const projectsTab = document.querySelector('.dashboard-menu-tab[data-section="projects"]');
+            if (projectsTab) projectsTab.click();
+          }, 1200);
         });
       }
     });

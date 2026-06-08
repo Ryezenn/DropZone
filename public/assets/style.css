@@ -1754,4 +1754,36 @@ footer {
   }
 }
 
+.form-container-card {
+  background-color: var(--surface);
+  border: var(--border);
+  box-shadow: var(--shadow-card);
+  padding: 32px;
+  max-width: 720px;
+  width: 100%;
+  margin-bottom: 40px;
+}
+
+.form-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+.form-actions-row {
+  margin-top: 24px;
+  display: flex;
+  justify-content: flex-end;
+}
+
+@media (max-width: 600px) {
+  .form-grid {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+  .form-container-card {
+    padding: 20px;
+  }
+}
+
 
