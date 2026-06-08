@@ -13,16 +13,20 @@ const Admin = require('./models/Admin');
 const app = express();
 const PORT = process.env.PORT || 3000;
 
+let mongoConnectionError = null;
+
 // Connect to MongoDB Atlas
 const MONGODB_URI = process.env.MONGODB_URI || 'mongodb+srv://ryezen:Hanzz7308@kasangkatan.2mud2w0.mongodb.net/portfolio';
 
 mongoose.connect(MONGODB_URI)
   .then(async () => {
     console.log('✓ Connected to MongoDB Atlas');
+    mongoConnectionError = null;
     await seedAdmin();
   })
   .catch((err) => {
     console.error('✗ MongoDB connection error:', err);
+    mongoConnectionError = err.message || err.toString();
   });
 
 // Seed admin user function
@@ -70,6 +74,16 @@ const adminAuthRoutes = require('./routes/adminAuth');
 const projectRoutes = require('./routes/projects');
 const userProjectRoutes = require('./routes/userProjects');
 const adminRoutes = require('./routes/admin');
+
+// Database connection status check middleware
+app.use('/api', (req, res, next) => {
+  if (mongoConnectionError) {
+    return res.status(503).json({
+      message: `Database connection error: ${mongoConnectionError}. Please check if your MongoDB Atlas database is active and IP Access List allows connections from anywhere (add 0.0.0.0/0).`
+    });
+  }
+  next();
+});
 
 // Mount Routes
 app.use('/api/auth', authRoutes);
