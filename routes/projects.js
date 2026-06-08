@@ -51,6 +51,11 @@ router.get('/', async (req, res) => {
   }
 });
 
+// GET /api/projects/stats-placeholder - Placeholder endpoint to prevent casting errors
+router.get('/stats-placeholder', (req, res) => {
+  return res.json({ status: 'ok', placeholder: true });
+});
+
 // GET /api/projects/:id - Public details
 router.get('/:id', async (req, res) => {
   try {
