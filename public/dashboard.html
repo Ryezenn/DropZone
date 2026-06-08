@@ -17,7 +17,7 @@
       </div>
       <div class="user-tag-dash">
         <div class="avatar-circle-dash" id="dash-avatar-circle">-</div>
-        <span class="dash-username-placeholder" style="font-weight: 700;">@username</span>
+        <span id="dash-username-display" class="dash-username-placeholder" style="font-weight: 700;">@username</span>
       </div>
     </div>
   </nav>
@@ -347,6 +347,14 @@
             if (projectsTab) projectsTab.click();
           }, 1200);
         });
+      }
+
+      // Check for #upload hash to automatically switch to the Upload Website tab
+      if (window.location.hash === '#upload') {
+        setTimeout(() => {
+          const uploadTab = document.querySelector('.dashboard-menu-tab[data-section="upload-website"]');
+          if (uploadTab) uploadTab.click();
+        }, 100);
       }
     });
   </script>
