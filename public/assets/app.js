@@ -771,6 +771,8 @@ function setupDashboardEvents() {
         formWeb.reset();
         loadUserStats();
         loadUserProjects();
+        const projectsTab = document.querySelector('.dashboard-menu-tab[data-section="projects"]');
+        if (projectsTab) projectsTab.click();
       } catch (err) {
         Toast.error(err.message || 'Failed to upload website project.');
       }
@@ -816,6 +818,8 @@ function setupDashboardEvents() {
         document.getElementById('drag-drop-selected-name').textContent = '';
         loadUserStats();
         loadUserProjects();
+        const projectsTab = document.querySelector('.dashboard-menu-tab[data-section="projects"]');
+        if (projectsTab) projectsTab.click();
       } catch (err) {
         Toast.error(err.message || 'File upload failed.');
       }
@@ -945,11 +949,29 @@ function setupDragAndDrop() {
 }
 
 function openUploadWebsiteModal() {
-  document.getElementById('modal-upload-website').classList.add('show');
+  const tab = document.querySelector('.dashboard-menu-tab[data-section="upload-website"]');
+  if (tab) {
+    tab.click();
+  } else {
+    const section = document.getElementById('section-upload-website');
+    if (section) {
+      document.querySelectorAll('.dashboard-section').forEach(s => s.style.display = 'none');
+      section.style.display = 'block';
+    }
+  }
 }
 
 function openUploadFileModal() {
-  document.getElementById('modal-upload-file').classList.add('show');
+  const tab = document.querySelector('.dashboard-menu-tab[data-section="upload-file"]');
+  if (tab) {
+    tab.click();
+  } else {
+    const section = document.getElementById('section-upload-file');
+    if (section) {
+      document.querySelectorAll('.dashboard-section').forEach(s => s.style.display = 'none');
+      section.style.display = 'block';
+    }
+  }
 }
 
 function openEditProjectModal(id) {
