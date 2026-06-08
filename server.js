@@ -18,16 +18,22 @@ let mongoConnectionError = null;
 // Connect to MongoDB Atlas
 const MONGODB_URI = process.env.MONGODB_URI || 'mongodb+srv://ryezen:Hanzz7308@kasangkatan.2mud2w0.mongodb.net/portfolio';
 
-mongoose.connect(MONGODB_URI)
-  .then(async () => {
-    console.log('✓ Connected to MongoDB Atlas');
-    mongoConnectionError = null;
-    await seedAdmin();
-  })
-  .catch((err) => {
-    console.error('✗ MongoDB connection error:', err);
-    mongoConnectionError = err.message || err.toString();
-  });
+try {
+  mongoose.connect(MONGODB_URI)
+    .then(async () => {
+      console.log('✓ Connected to MongoDB Atlas');
+      mongoConnectionError = null;
+      await seedAdmin();
+    })
+    .catch((err) => {
+      console.error('✗ MongoDB connection error:', err);
+      mongoConnectionError = err.message || err.toString();
+    });
+} catch (err) {
+  console.error('✗ MongoDB synchronous connection error:', err);
+  mongoConnectionError = err.message || err.toString();
+}
+
 
 // Seed admin user function
 async function seedAdmin() {

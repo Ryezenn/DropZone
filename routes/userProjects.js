@@ -8,10 +8,18 @@ const Project = require('../models/Project');
 const User = require('../models/User');
 
 // Setup upload directory
-const uploadDir = path.join(__dirname, '../uploads');
-if (!fs.existsSync(uploadDir)) {
-  fs.mkdirSync(uploadDir, { recursive: true });
+const uploadDir = process.env.NODE_ENV === 'production'
+  ? path.join('/tmp', 'uploads')
+  : path.join(__dirname, '../uploads');
+
+try {
+  if (!fs.existsSync(uploadDir)) {
+    fs.mkdirSync(uploadDir, { recursive: true });
+  }
+} catch (err) {
+  console.warn('Warning: Could not create upload directory:', err.message);
 }
+
 
 // Multer Storage Configuration
 const storage = multer.diskStorage({
