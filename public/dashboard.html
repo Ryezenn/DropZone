@@ -9,11 +9,15 @@
 <body>
 
   <!-- TOP BAR -->
-  <nav class="navbar-sticky" style="height: 60px;">
+  <nav class="navbar-sticky" style="height: 64px;">
     <div class="navbar-container">
-      <a href="index.html" class="logo">CodeDrop</a>
-      <div class="user-tag">
-        <span id="dash-username-display" style="font-weight: 700;">@username</span>
+      <div style="display: flex; align-items: center; gap: 16px;">
+        <a href="index.html" class="logo">CodeDrop</a>
+        <a href="index.html" class="btn-outline btn-sm" style="box-shadow: 2px 2px 0 var(--dark);">← Back to Gallery</a>
+      </div>
+      <div class="user-tag-dash">
+        <div class="avatar-circle-dash" id="dash-avatar-circle">-</div>
+        <span class="dash-username-placeholder" style="font-weight: 700;">@username</span>
       </div>
     </div>
   </nav>
@@ -22,19 +26,37 @@
   <div class="dashboard-wrapper">
     <!-- SIDEBAR -->
     <aside class="dashboard-sidebar">
-      <ul class="sidebar-menu">
+      <ul class="sidebar-menu" style="display: flex; flex-direction: column; height: 100%;">
         <li class="sidebar-item active">
-          <a href="#" class="dashboard-menu-tab" data-section="projects">My Projects</a>
+          <a href="#" class="dashboard-menu-tab" data-section="projects">
+            <svg class="sidebar-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"></rect><rect x="14" y="3" width="7" height="7"></rect><rect x="14" y="14" width="7" height="7"></rect><rect x="3" y="14" width="7" height="7"></rect></svg>
+            <span>My Projects</span>
+          </a>
         </li>
         <li class="sidebar-item">
-          <button id="btn-add-website">+ Upload Website</button>
+          <button id="btn-add-website" class="btn-sidebar-action">
+            <svg class="sidebar-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="16"></line><line x1="8" y1="12" x2="16" y2="12"></line></svg>
+            <span>Upload Website</span>
+          </button>
         </li>
         <li class="sidebar-item">
-          <button id="btn-add-file">+ Upload File</button>
+          <button id="btn-add-file" class="btn-sidebar-action">
+            <svg class="sidebar-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="12" y1="18" x2="12" y2="12"></line><line x1="9" y1="15" x2="15" y2="15"></line></svg>
+            <span>Upload File</span>
+          </button>
         </li>
         <li class="sidebar-divider"></li>
         <li class="sidebar-item">
-          <a href="#" class="dashboard-menu-tab" data-section="profile">My Profile</a>
+          <a href="#" class="dashboard-menu-tab" data-section="profile">
+            <svg class="sidebar-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+            <span>My Profile</span>
+          </a>
+        </li>
+        <li class="sidebar-item logout-item" style="margin-top: auto; padding-top: 24px;">
+          <button id="btn-dash-logout-sidebar" class="btn-sidebar-logout">
+            <svg class="sidebar-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path><polyline points="16 17 21 12 16 7"></polyline><line x1="21" y1="12" x2="9" y2="12"></line></svg>
+            <span>Logout</span>
+          </button>
         </li>
       </ul>
     </aside>
@@ -44,23 +66,47 @@
       
       <!-- MY PROJECTS SECTION -->
       <section id="section-projects" class="dashboard-section">
+        <!-- WELCOME BANNER -->
+        <div class="dashboard-banner">
+          <div class="banner-content">
+            <span class="banner-badge">DEVELOPER CONTROL PANEL</span>
+            <h1 class="banner-title">Welcome Back, <span class="dash-username-placeholder">@username</span>! 🚀</h1>
+            <p class="banner-subtitle">Urus website dan file project share kamu secara langsung. Pantau statistik dan unduhan secara real-time.</p>
+          </div>
+          <div class="banner-deco">
+            <div class="banner-deco-shape"></div>
+          </div>
+        </div>
+
         <div class="dashboard-header">
           <h2>My Projects</h2>
         </div>
 
         <!-- STATS CARDS -->
         <div class="stats-row">
-          <div class="stat-card">
-            <span class="stat-card-title">My Projects</span>
+          <div class="stat-card stat-card-primary">
+            <div class="stat-card-header">
+              <span class="stat-card-title">Total Projects</span>
+              <div class="stat-card-icon">📁</div>
+            </div>
             <span class="stat-card-value" id="stat-my-projects">0</span>
+            <span class="stat-card-sub">Project terpublikasi</span>
           </div>
-          <div class="stat-card" style="background-color: var(--secondary); color: #FFFFFF;">
-            <span class="stat-card-title" style="color: #CCCCCC;">My Downloads</span>
-            <span class="stat-card-value" id="stat-my-downloads" style="color: var(--primary);">0</span>
+          <div class="stat-card stat-card-secondary">
+            <div class="stat-card-header">
+              <span class="stat-card-title">Total Downloads</span>
+              <div class="stat-card-icon">⚡</div>
+            </div>
+            <span class="stat-card-value" id="stat-my-downloads">0</span>
+            <span class="stat-card-sub">Unduhan oleh user lain</span>
           </div>
-          <div class="stat-card" style="background-color: var(--surface); color: var(--text);">
-            <span class="stat-card-title">Developer Since</span>
-            <span class="stat-card-value" id="stat-joined-date" style="font-size: 18px; margin-top: 12px; font-family: var(--font-ui); font-weight: 700;">-</span>
+          <div class="stat-card stat-card-accent">
+            <div class="stat-card-header">
+              <span class="stat-card-title">Joined Since</span>
+              <div class="stat-card-icon">📅</div>
+            </div>
+            <span class="stat-card-value" id="stat-joined-date" style="font-size: 18px; font-family: var(--font-ui); font-weight: 700; margin-top: 12px;">-</span>
+            <span class="stat-card-sub">Tanggal bergabung Anda</span>
           </div>
         </div>
 
@@ -259,5 +305,31 @@
   </div>
 
   <script src="assets/app.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const userStr = localStorage.getItem('user');
+      if (userStr) {
+        const user = JSON.parse(userStr);
+        document.querySelectorAll('.dash-username-placeholder').forEach(el => {
+          el.textContent = `@${user.username}`;
+        });
+        const initials = user.username.substring(0, 2);
+        const avatarCircle = document.getElementById('dash-avatar-circle');
+        if (avatarCircle) avatarCircle.textContent = initials;
+      }
+      
+      const logoutBtn = document.getElementById('btn-dash-logout-sidebar');
+      if (logoutBtn) {
+        logoutBtn.addEventListener('click', () => {
+          localStorage.removeItem('token');
+          localStorage.removeItem('user');
+          if (typeof Toast !== 'undefined') {
+            Toast.success('Logged out successfully!');
+          }
+          setTimeout(() => window.location.href = 'index.html', 1000);
+        });
+      }
+    });
+  </script>
 </body>
 </html>

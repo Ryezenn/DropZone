@@ -1547,3 +1547,211 @@ footer {
   color: var(--dark);
 }
 
+/* --- PREMIUM DASHBOARD UPDATES --- */
+
+.dashboard-banner {
+  background: linear-gradient(135deg, var(--primary) 0%, #FFF27F 100%);
+  border: var(--border);
+  box-shadow: var(--shadow-card);
+  padding: 32px;
+  margin-bottom: 40px;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.banner-content {
+  z-index: 10;
+  max-width: 60%;
+}
+
+.banner-badge {
+  background-color: var(--dark);
+  color: var(--primary);
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 700;
+  padding: 4px 8px;
+  border: 1px solid var(--dark);
+  display: inline-block;
+  margin-bottom: 12px;
+}
+
+.banner-title {
+  font-size: 32px;
+  line-height: 1.2;
+  margin-bottom: 8px;
+  font-family: var(--font-display);
+}
+
+.banner-subtitle {
+  font-size: 15px;
+  color: #333333;
+  font-weight: 600;
+}
+
+.banner-deco {
+  position: absolute;
+  right: 5%;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 150px;
+  height: 150px;
+  background-color: var(--secondary);
+  border: var(--border);
+  box-shadow: 8px 8px 0 var(--dark);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.banner-deco-shape {
+  width: 70px;
+  height: 70px;
+  background-color: var(--primary);
+  border: var(--border);
+  transform: rotate(45deg);
+}
+
+/* Sidebar Custom Styling */
+.sidebar-icon {
+  width: 18px;
+  height: 18px;
+  stroke: currentColor;
+}
+
+.btn-sidebar-action {
+  background-color: var(--surface) !important;
+  color: var(--text) !important;
+  border-top: 1px solid #333333 !important;
+  border-bottom: 1px solid #333333 !important;
+}
+
+.btn-sidebar-action:hover {
+  background-color: #2D2D2D !important;
+  color: #FFFFFF !important;
+}
+
+.btn-sidebar-logout {
+  width: 100%;
+  text-align: left;
+  background: transparent;
+  border: none;
+  box-shadow: none;
+  color: #FFAAAA;
+  font-family: var(--font-ui);
+  font-size: 14px;
+  font-weight: 600;
+  padding: 14px 24px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  cursor: pointer;
+  border-radius: 0;
+  transition: all 120ms ease;
+}
+
+.btn-sidebar-logout:hover {
+  background-color: var(--danger) !important;
+  color: #FFFFFF !important;
+  box-shadow: none !important;
+  transform: none !important;
+}
+
+/* Stat Cards Custom Styling */
+.stat-card-primary {
+  background-color: #F3F2EB !important;
+  color: var(--text);
+}
+
+.stat-card-secondary {
+  background-color: var(--secondary) !important;
+  color: #FFFFFF;
+}
+
+.stat-card-secondary .stat-card-title {
+  color: #CCCCCC;
+}
+
+.stat-card-secondary .stat-card-value {
+  color: var(--primary) !important;
+}
+
+.stat-card-secondary .stat-card-sub {
+  color: #AAAAAA;
+}
+
+.stat-card-accent {
+  background-color: var(--primary) !important;
+  color: var(--dark);
+}
+
+.stat-card-accent .stat-card-sub {
+  color: #555555;
+}
+
+.stat-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+.stat-card-icon {
+  font-size: 20px;
+}
+
+.stat-card-sub {
+  font-size: 11px;
+  font-weight: 700;
+  margin-top: 12px;
+  text-transform: uppercase;
+  color: var(--muted);
+  font-family: var(--font-mono);
+}
+
+/* Top bar details */
+.user-tag-dash {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background-color: var(--surface-2);
+  border: var(--border);
+  padding: 4px 12px 4px 6px;
+  box-shadow: 2px 2px 0 var(--dark);
+}
+
+.avatar-circle-dash {
+  width: 28px;
+  height: 28px;
+  background-color: var(--secondary);
+  border: 1px solid var(--border-color);
+  color: var(--primary);
+  font-weight: 700;
+  font-size: 11px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-transform: uppercase;
+  border-radius: 50%;
+}
+
+@media (max-width: 768px) {
+  .dashboard-banner {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 24px;
+    padding: 24px;
+  }
+  .banner-content {
+    max-width: 100%;
+  }
+  .banner-deco {
+    display: none;
+  }
+}
+
+
