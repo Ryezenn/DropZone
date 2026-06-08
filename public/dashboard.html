@@ -304,6 +304,20 @@
 
   <script src="assets/app.js"></script>
   <script>
+    // Sanitize localStorage immediately to prevent crashes in app.js due to invalid/missing date values
+    try {
+      const userStr = localStorage.getItem('user');
+      if (userStr) {
+        const user = JSON.parse(userStr);
+        if (!user.joinedAt || isNaN(Date.parse(user.joinedAt))) {
+          user.joinedAt = new Date().toISOString();
+          localStorage.setItem('user', JSON.stringify(user));
+        }
+      }
+    } catch (e) {
+      console.error('LocalStorage sanitization failed:', e);
+    }
+
     document.addEventListener('DOMContentLoaded', () => {
       const userStr = localStorage.getItem('user');
       if (userStr) {
