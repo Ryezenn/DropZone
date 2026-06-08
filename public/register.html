@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Join CodeDrop today and start sharing your websites and files. Join the open developer sharing community.">
+  <title>Register — CodeDrop</title>
+  <link rel="stylesheet" href="assets/style.css">
+</head>
+<body style="background-color: var(--surface-2);">
+
+  <!-- NAVBAR -->
+  <nav class="navbar-sticky">
+    <div class="navbar-container">
+      <a href="index.html" class="logo">CodeDrop</a>
+      <div class="nav-actions">
+        <a href="login.html" class="btn-outline">Login</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- AUTH LAYOUT -->
+  <div class="auth-wrapper">
+    <!-- LEFT SIDEBAR -->
+    <div class="auth-sidebar">
+      <div class="auth-deco-mesh"></div>
+      <h2 class="auth-tagline">
+        Bergabung dan<br>
+        bagikan <span>karyamu.</span>
+      </h2>
+      <p class="auth-sub">
+        Dapatkan feedback dari developer lain dan bangun reputasimu di ekosistem open-source CodeDrop.
+      </p>
+    </div>
+
+    <!-- RIGHT FORM -->
+    <div class="auth-content">
+      <div class="auth-form-card">
+        <h2 class="auth-title">Register Account</h2>
+        <p class="auth-subtitle">Create a developer profile to share projects</p>
+        
+        <form id="register-form">
+          <div class="form-group">
+            <label for="reg-username">Username *</label>
+            <input type="text" id="reg-username" placeholder="Alphanumeric & underscore only" required autocomplete="off">
+            <div id="username-feedback" class="feedback-text"></div>
+          </div>
+          
+          <div class="form-group">
+            <label for="reg-email">Email Address *</label>
+            <input type="email" id="reg-email" placeholder="name@domain.com" required autocomplete="email">
+          </div>
+          
+          <div class="form-group">
+            <label for="reg-password">Password *</label>
+            <input type="password" id="reg-password" placeholder="At least 8 characters" required>
+            <div class="strength-container">
+              <div class="strength-bar"></div>
+              <div class="strength-bar"></div>
+              <div class="strength-bar"></div>
+            </div>
+          </div>
+          
+          <div class="form-group">
+            <label for="reg-confirm-password">Confirm Password *</label>
+            <input type="password" id="reg-confirm-password" placeholder="Repeat your password" required>
+          </div>
+          
+          <button type="submit" class="btn-primary w-full mb-16" style="font-size: 18px; padding: 12px; margin-top: 16px;">Register →</button>
+        </form>
+        
+        <div class="auth-footer-link">
+          Sudah punya akun? <a href="login.html">Login →</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="assets/app.js"></script>
+</body>
+</html>

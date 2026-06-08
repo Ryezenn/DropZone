@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard — CodeDrop</title>
+  <link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+
+  <!-- TOP BAR -->
+  <nav class="navbar-sticky" style="height: 60px;">
+    <div class="navbar-container">
+      <a href="index.html" class="logo">CodeDrop</a>
+      <div class="user-tag">
+        <span id="dash-username-display" style="font-weight: 700;">@username</span>
+      </div>
+    </div>
+  </nav>
+
+  <!-- DASHBOARD WRAPPER -->
+  <div class="dashboard-wrapper">
+    <!-- SIDEBAR -->
+    <aside class="dashboard-sidebar">
+      <ul class="sidebar-menu">
+        <li class="sidebar-item active">
+          <a href="#" class="dashboard-menu-tab" data-section="projects">My Projects</a>
+        </li>
+        <li class="sidebar-item">
+          <button id="btn-add-website">+ Upload Website</button>
+        </li>
+        <li class="sidebar-item">
+          <button id="btn-add-file">+ Upload File</button>
+        </li>
+        <li class="sidebar-divider"></li>
+        <li class="sidebar-item">
+          <a href="#" class="dashboard-menu-tab" data-section="profile">My Profile</a>
+        </li>
+      </ul>
+    </aside>
+
+    <!-- MAIN DASHBOARD CONTENT -->
+    <main class="dashboard-main">
+      
+      <!-- MY PROJECTS SECTION -->
+      <section id="section-projects" class="dashboard-section">
+        <div class="dashboard-header">
+          <h2>My Projects</h2>
+        </div>
+
+        <!-- STATS CARDS -->
+        <div class="stats-row">
+          <div class="stat-card">
+            <span class="stat-card-title">My Projects</span>
+            <span class="stat-card-value" id="stat-my-projects">0</span>
+          </div>
+          <div class="stat-card" style="background-color: var(--secondary); color: #FFFFFF;">
+            <span class="stat-card-title" style="color: #CCCCCC;">My Downloads</span>
+            <span class="stat-card-value" id="stat-my-downloads" style="color: var(--primary);">0</span>
+          </div>
+          <div class="stat-card" style="background-color: var(--surface); color: var(--text);">
+            <span class="stat-card-title">Developer Since</span>
+            <span class="stat-card-value" id="stat-joined-date" style="font-size: 18px; margin-top: 12px; font-family: var(--font-ui); font-weight: 700;">-</span>
+          </div>
+        </div>
+
+        <!-- PROJECTS TABLE -->
+        <div class="table-container">
+          <table class="neobrutal-table">
+            <thead>
+              <tr>
+                <th>Title</th>
+                <th>Type</th>
+                <th>Downloads</th>
+                <th>Uploaded Date</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody id="my-projects-table-body">
+              <!-- Loaded dynamically via app.js -->
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- PROFILE SECTION -->
+      <section id="section-profile" class="dashboard-section" style="display: none;">
+        <div class="dashboard-header">
+          <h2>Edit Profile</h2>
+        </div>
+
+        <div style="background-color: var(--surface); border: var(--border); box-shadow: var(--shadow-card); padding: 32px; max-width: 580px;">
+          <form id="form-profile">
+            <div class="form-group">
+              <label for="profile-username">Username</label>
+              <input type="text" id="profile-username" readonly style="background-color: var(--surface-2); cursor: not-allowed;">
+            </div>
+            
+            <div class="form-group">
+              <label for="profile-email">Email Address</label>
+              <input type="email" id="profile-email" readonly style="background-color: var(--surface-2); cursor: not-allowed;">
+            </div>
+            
+            <div class="form-group">
+              <label for="profile-bio">Developer Bio</label>
+              <textarea id="profile-bio" rows="4" maxlength="160" placeholder="Tell the community about yourself... (max 160 characters)"></textarea>
+            </div>
+            
+            <div class="form-group">
+              <label for="profile-avatar">Avatar URL</label>
+              <input type="url" id="profile-avatar" placeholder="https://example.com/avatar.png">
+            </div>
+            
+            <button type="submit" class="btn-primary" style="margin-top: 16px;">Save Profile</button>
+          </form>
+        </div>
+      </section>
+
+    </main>
+  </div>
+
+  <!-- ==========================================
+       MODALS SECTION
+       ========================================== -->
+
+  <!-- MODAL: UPLOAD WEBSITE -->
+  <div class="modal-overlay" id="modal-upload-website">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 class="modal-title">Upload Website</h3>
+        <button class="modal-close">&times;</button>
+      </div>
+      <form id="form-upload-website">
+        <div class="modal-body">
+          <div class="form-group">
+            <label for="web-title">Project Title *</label>
+            <input type="text" id="web-title" maxlength="80" placeholder="My Awesome Portfolio" required>
+          </div>
+          <div class="form-group">
+            <label for="web-description">Description *</label>
+            <textarea id="web-description" rows="3" maxlength="500" placeholder="Briefly describe the project, its goals, features..." required></textarea>
+          </div>
+          <div class="form-group">
+            <label for="web-url">Website URL *</label>
+            <input type="url" id="web-url" placeholder="https://myproject.com" required>
+          </div>
+          <div class="form-group">
+            <label for="web-preview">Preview Image URL</label>
+            <input type="url" id="web-preview" placeholder="https://myproject.com/screenshot.png">
+          </div>
+          <div class="form-group">
+            <label for="web-tech">Tech Stack (comma separated)</label>
+            <input type="text" id="web-tech" placeholder="React, Node.js, Mongoose">
+          </div>
+          <div class="form-group">
+            <label for="web-tags">Category Tags (comma separated)</label>
+            <input type="text" id="web-tags" placeholder="portfolio, landing-page, utility">
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn-outline btn-modal-cancel">Cancel</button>
+          <button type="submit" class="btn-primary">Upload Project</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- MODAL: UPLOAD FILE -->
+  <div class="modal-overlay" id="modal-upload-file">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 class="modal-title">Upload File</h3>
+        <button class="modal-close">&times;</button>
+      </div>
+      <form id="form-upload-file">
+        <div class="modal-body">
+          <div class="form-group">
+            <label for="file-title">Project Title *</label>
+            <input type="text" id="file-title" maxlength="80" placeholder="Game Engine Source Code" required>
+          </div>
+          <div class="form-group">
+            <label for="file-description">Description *</label>
+            <textarea id="file-description" rows="3" maxlength="500" placeholder="Briefly describe the contents of this file upload..." required></textarea>
+          </div>
+          
+          <div class="form-group">
+            <label>Project File * (max 50MB)</label>
+            <div class="drag-drop-area" id="file-drag-drop-area">
+              <div class="drag-drop-icon">📁</div>
+              <div class="drag-drop-text">Drag & Drop file here or Click to select</div>
+              <div class="drag-drop-subtext">Allowed extensions: zip, rar, 7z, pdf, png, jpg, css, js, html, etc.</div>
+            </div>
+            <input type="file" id="file-upload-input" style="display: none;">
+            <div id="drag-drop-selected-name" class="feedback-text success" style="margin-top: 8px; font-weight: 700;"></div>
+          </div>
+
+          <div class="form-group">
+            <label for="file-tags">Tags (comma separated)</label>
+            <input type="text" id="file-tags" placeholder="source-code, template, asset">
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn-outline btn-modal-cancel">Cancel</button>
+          <button type="submit" class="btn-primary">Upload File</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- MODAL: EDIT PROJECT -->
+  <div class="modal-overlay" id="modal-edit-project">
+    <div class="modal-content">
+      <div class="modal-header" style="background-color: var(--secondary); color: #FFFFFF;">
+        <h3 class="modal-title" style="color: #FFFFFF;">Edit Project</h3>
+        <button class="modal-close" style="color: #FFFFFF;">&times;</button>
+      </div>
+      <form id="form-edit-project">
+        <div class="modal-body">
+          <div class="form-group">
+            <label for="edit-title">Project Title *</label>
+            <input type="text" id="edit-title" maxlength="80" required>
+          </div>
+          <div class="form-group">
+            <label for="edit-description">Description *</label>
+            <textarea id="edit-description" rows="3" maxlength="500" required></textarea>
+          </div>
+          <div class="form-group">
+            <label for="edit-tags">Tags (comma separated)</label>
+            <input type="text" id="edit-tags">
+          </div>
+          
+          <!-- Conditional Fields injected via JS depending on project type (website url vs file upload) -->
+          <div id="edit-conditional-fields"></div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn-outline btn-modal-cancel">Cancel</button>
+          <button type="submit" class="btn-secondary">Save Changes</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- MODAL: DELETE CONFIRMATION -->
+  <div class="modal-overlay" id="modal-delete-confirm">
+    <div class="modal-content" style="max-width: 400px;">
+      <div class="modal-header" style="background-color: var(--danger); color: #FFFFFF;">
+        <h3 class="modal-title" style="color: #FFFFFF;">Hapus Project?</h3>
+        <button class="modal-close" style="color: #FFFFFF;">&times;</button>
+      </div>
+      <div class="modal-body">
+        <p style="font-weight: 600;">Apakah Anda yakin ingin menghapus project ini?</p>
+        <p style="color: var(--danger); font-size: 13px; margin-top: 8px;">Tindakan ini permanen dan file yang terunggah akan dihapus dari server.</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn-outline btn-modal-cancel">Batal</button>
+        <button type="button" class="btn-danger" id="btn-confirm-delete">Hapus</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="assets/app.js"></script>
+</body>
+</html>

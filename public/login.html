@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Sign in to your CodeDrop account to upload, manage, and share your project websites and files.">
+  <title>Login — CodeDrop</title>
+  <link rel="stylesheet" href="assets/style.css">
+</head>
+<body style="background-color: var(--surface-2);">
+
+  <!-- NAVBAR -->
+  <nav class="navbar-sticky">
+    <div class="navbar-container">
+      <a href="index.html" class="logo">CodeDrop</a>
+      <div class="nav-actions">
+        <a href="register.html" class="btn-primary" style="background-color: var(--dark); color: var(--primary); box-shadow: 3px 3px 0 var(--primary);">Register →</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- AUTH LAYOUT -->
+  <div class="auth-wrapper">
+    <!-- LEFT SIDEBAR -->
+    <div class="auth-sidebar">
+      <div class="auth-deco-mesh"></div>
+      <h2 class="auth-tagline">
+        Kembali ke<br>
+        platform <span>CodeDrop.</span>
+      </h2>
+      <p class="auth-sub">
+        Kelola portfolio kamu, edit link tautan website, perbarui source code, dan pantau jumlah unduhan.
+      </p>
+    </div>
+
+    <!-- RIGHT FORM -->
+    <div class="auth-content">
+      <div class="auth-form-card">
+        <h2 class="auth-title">Developer Login</h2>
+        <p class="auth-subtitle">Sign in to manage and share your works</p>
+        
+        <form id="login-form">
+          <div class="form-group">
+            <label for="login-email">Email Address *</label>
+            <input type="email" id="login-email" placeholder="name@domain.com" required autocomplete="email">
+          </div>
+          
+          <div class="form-group">
+            <label for="login-password">Password *</label>
+            <input type="password" id="login-password" placeholder="••••••••" required>
+          </div>
+          
+          <button type="submit" class="btn-dark w-full mb-16" style="font-size: 18px; padding: 12px; margin-top: 16px; box-shadow: 4px 4px 0 var(--primary);">Login →</button>
+        </form>
+        
+        <div class="auth-footer-link">
+          Belum punya akun? <a href="register.html">Register →</a>
+        </div>
+        
+        <div style="text-align: center; margin-top: 48px;">
+          <a href="admin-login.html" style="font-size: 12px; color: var(--muted); font-weight: 600;">Admin login portal →</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="assets/app.js"></script>
+</body>
+</html>

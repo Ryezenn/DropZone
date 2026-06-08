@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="CodeDrop - Share your projects, websites, and files on the ultimate developer platform. Free and open source project sharing.">
+  <title>CodeDrop — Share & Discover Projects</title>
+  <link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <nav class="navbar-sticky">
+    <div class="navbar-container">
+      <a href="index.html" class="logo">CodeDrop</a>
+      
+      <ul class="nav-links">
+        <li><a href="#" class="nav-link nav-category-link active" data-type="all">All</a></li>
+        <li><a href="#" class="nav-link nav-category-link" data-type="website">Websites</a></li>
+        <li><a href="#" class="nav-link nav-category-link" data-type="file">Files</a></li>
+      </ul>
+      
+      <div class="nav-actions" id="nav-auth-section">
+        <!-- Filled dynamically by app.js -->
+        <div class="skeleton-block" style="height: 36px; width: 120px;"></div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- HERO SECTION -->
+  <header class="hero">
+    <div class="hero-grid">
+      <div class="hero-left">
+        <span class="hero-badge">OPEN PLATFORM — SHARE YOUR CODE</span>
+        
+        <h1 class="hero-title">
+          Share Your<br>
+          <span>Projects.</span>
+        </h1>
+        
+        <p class="hero-sub">
+          Upload website dan file project kamu. Gratis. Selamanya. Cari inspirasi dari developer lain di seluruh dunia.
+        </p>
+        
+        <div class="hero-stats">
+          <div class="stat-box">
+            <div class="stat-number" id="stat-total-projects">-</div>
+            <div class="stat-label">Total Projects</div>
+          </div>
+          <div class="stat-box">
+            <div class="stat-number" id="stat-total-users">-</div>
+            <div class="stat-label">Total Users</div>
+          </div>
+          <div class="stat-box">
+            <div class="stat-number" id="stat-total-downloads">-</div>
+            <div class="stat-label">Downloads</div>
+          </div>
+        </div>
+        
+        <div class="hero-cta">
+          <button id="hero-cta-upload" class="btn-hero-primary">Upload Project →</button>
+          <a href="#browse-section" class="btn-hero-secondary">Browse Projects ↓</a>
+        </div>
+      </div>
+      
+      <div class="hero-right">
+        <div class="hero-deco-box">
+          <div class="hero-deco-inner"></div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- FILTER & SEARCH BAR -->
+  <section class="filter-bar" id="browse-section">
+    <div class="filter-container">
+      <div class="filter-buttons">
+        <button class="filter-btn active" data-type="all">All Projects</button>
+        <button class="filter-btn" data-type="website">Websites</button>
+        <button class="filter-btn" data-type="file">Files</button>
+      </div>
+      
+      <div class="search-sort-group">
+        <input type="text" id="search-project-input" placeholder="Search projects, tags..." class="search-input">
+        <input type="text" id="filter-username-input" placeholder="By User: @username" class="search-input">
+        
+        <div class="custom-dropdown" id="custom-sort-dropdown">
+          <button class="dropdown-trigger" id="sort-dropdown-trigger" type="button">
+            <span id="sort-dropdown-selected-label">Latest Uploads</span>
+            <span class="dropdown-caret">▼</span>
+          </button>
+          <div class="dropdown-menu" id="sort-dropdown-menu">
+            <div class="dropdown-item active" data-value="latest">Latest Uploads</div>
+            <div class="dropdown-item" data-value="featured">Featured First</div>
+            <div class="dropdown-item" data-value="downloads">Most Downloaded</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROJECT CARDS GRID -->
+  <main class="container">
+    <div class="cards-grid" id="projects-grid">
+      <!-- Loaded dynamically via app.js -->
+    </div>
+  </main>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="container footer-grid">
+      <div class="footer-left">
+        <div class="footer-logo">CodeDrop</div>
+        <p class="footer-tagline">CodeDrop adalah tempat para developer membagikan karyanya kepada dunia secara langsung dan transparan.</p>
+      </div>
+      
+      <div class="footer-middle">
+        <h4>Navigation</h4>
+        <ul class="footer-links">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="login.html">Login</a></li>
+          <li><a href="register.html">Register</a></li>
+          <li><a href="dashboard.html">User Dashboard</a></li>
+        </ul>
+      </div>
+      
+      <div class="footer-right">
+        <h4>CodeDrop</h4>
+        <p style="color: #999999; font-size: 14px;">Build with Neobrutalism UI style guidelines.</p>
+        <a href="admin-login.html" class="admin-link-small">Admin Portal Access</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="assets/app.js"></script>
+</body>
+</html>

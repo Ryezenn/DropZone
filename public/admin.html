@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Dashboard — CodeDrop</title>
+  <link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+
+  <!-- TOP BAR -->
+  <nav class="navbar-sticky" style="height: 60px; border-bottom: 2px solid var(--danger);">
+    <div class="navbar-container">
+      <a href="index.html" class="logo">CodeDrop <span style="font-size: 11px; font-weight: 800; background: var(--danger); color: #FFFFFF; padding: 2px 6px; margin-left: 8px;">ADMIN</span></a>
+      <div class="user-tag">
+        <span id="admin-username-display" style="font-weight: 700; color: var(--danger);">Admin: @admin</span>
+      </div>
+    </div>
+  </nav>
+
+  <!-- DASHBOARD WRAPPER -->
+  <div class="dashboard-wrapper">
+    <!-- SIDEBAR -->
+    <aside class="dashboard-sidebar" style="border-right: 2px solid var(--danger);">
+      <ul class="sidebar-menu">
+        <li class="sidebar-item active">
+          <a href="#" class="admin-menu-tab" data-section="projects">All Projects</a>
+        </li>
+        <li class="sidebar-item">
+          <a href="#" class="admin-menu-tab" data-section="users">All Users</a>
+        </li>
+        <li class="sidebar-divider"></li>
+        <li class="sidebar-item">
+          <a href="#" class="admin-menu-tab" data-section="stats">Statistics</a>
+        </li>
+        <li class="sidebar-divider"></li>
+        <li class="sidebar-item">
+          <button id="admin-btn-logout" class="btn-danger btn-sm" style="width: calc(100% - 48px); margin: 0 24px; box-shadow: none;">Log Out Admin</button>
+        </li>
+      </ul>
+    </aside>
+
+    <!-- MAIN DASHBOARD CONTENT -->
+    <main class="dashboard-main">
+      
+      <!-- ALL PROJECTS SECTION -->
+      <section id="admin-projects" class="admin-section">
+        <div class="dashboard-header">
+          <h2>All Projects</h2>
+        </div>
+
+        <div class="table-container">
+          <table class="neobrutal-table">
+            <thead>
+              <tr>
+                <th>Title</th>
+                <th>Owner</th>
+                <th>Type</th>
+                <th>Uploaded Date</th>
+                <th style="text-align: center;">Featured</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody id="admin-projects-table-body">
+              <!-- Loaded dynamically via app.js -->
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- ALL USERS SECTION -->
+      <section id="admin-users" class="admin-section" style="display: none;">
+        <div class="dashboard-header">
+          <h2>All Registered Users</h2>
+        </div>
+
+        <div class="table-container">
+          <table class="neobrutal-table">
+            <thead>
+              <tr>
+                <th>Username</th>
+                <th>Email</th>
+                <th>Projects Count</th>
+                <th>Joined Date</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody id="admin-users-table-body">
+              <!-- Loaded dynamically via app.js -->
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- STATISTICS SECTION -->
+      <section id="admin-stats" class="admin-section" style="display: none;">
+        <div class="dashboard-header">
+          <h2>Platform Statistics</h2>
+        </div>
+
+        <!-- STATS CARDS -->
+        <div class="stats-row">
+          <div class="stat-card" style="background-color: var(--secondary); color: #FFFFFF;">
+            <span class="stat-card-title" style="color: #CCCCCC;">Total Projects</span>
+            <span class="stat-card-value" id="admin-stat-total-projects" style="color: var(--primary);">0</span>
+          </div>
+          <div class="stat-card" style="background-color: var(--primary);">
+            <span class="stat-card-title">Total Users</span>
+            <span class="stat-card-value" id="admin-stat-total-users">0</span>
+          </div>
+          <div class="stat-card">
+            <span class="stat-card-title">Total Downloads</span>
+            <span class="stat-card-value" id="admin-stat-total-downloads">0</span>
+          </div>
+          <div class="stat-card" style="background-color: var(--surface); color: var(--text);">
+            <span class="stat-card-title">Total Files Size</span>
+            <span class="stat-card-value" id="admin-stat-total-size" style="font-size: 24px; margin-top: 10px;">0.00 MB</span>
+          </div>
+        </div>
+
+        <!-- CSS BAR CHART -->
+        <div class="chart-container">
+          <h3 class="chart-title">Project Upload Activity (Last 7 Days)</h3>
+          <div class="pure-css-chart" id="admin-stats-chart-wrapper">
+            <!-- Rendered dynamically by app.js -->
+          </div>
+        </div>
+      </section>
+
+    </main>
+  </div>
+
+  <!-- ==========================================
+       ADMIN MODALS
+       ========================================== -->
+
+  <!-- MODAL: DELETE PROJECT CONFIRM -->
+  <div class="modal-overlay" id="modal-admin-delete-project">
+    <div class="modal-content" style="max-width: 400px;">
+      <div class="modal-header" style="background-color: var(--danger); color: #FFFFFF;">
+        <h3 class="modal-title" style="color: #FFFFFF;">Hapus Project?</h3>
+        <button class="admin-modal-close" style="background:transparent; border:none; color:#FFFFFF; font-size:24px; cursor:pointer;">&times;</button>
+      </div>
+      <div class="modal-body">
+        <p style="font-weight: 600;">Apakah Anda yakin ingin menghapus project ini sebagai Admin?</p>
+        <p style="color: var(--danger); font-size: 13px; margin-top: 8px;">Tindakan ini akan menghapus data project serta file terunggah dari server selamanya.</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn-outline btn-admin-modal-cancel">Batal</button>
+        <button type="button" class="btn-danger" id="btn-admin-confirm-delete-project">Hapus Project</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL: DELETE USER CASCADE CONFIRM -->
+  <div class="modal-overlay" id="modal-admin-delete-user">
+    <div class="modal-content" style="max-width: 420px;">
+      <div class="modal-header" style="background-color: var(--danger); color: #FFFFFF;">
+        <h3 class="modal-title" style="color: #FFFFFF;">Delete User & Cascade?</h3>
+        <button class="admin-modal-close" style="background:transparent; border:none; color:#FFFFFF; font-size:24px; cursor:pointer;">&times;</button>
+      </div>
+      <div class="modal-body">
+        <p style="font-weight: 700; color: var(--danger);">PERINGATAN KRITIS!</p>
+        <p style="margin-top: 8px; font-weight: 600;">Apakah Anda yakin ingin menghapus user ini?</p>
+        <p style="color: var(--muted); font-size: 13px; margin-top: 8px;">Ini akan menghapus seluruh data user DAN semua website & file project miliknya secara permanen.</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn-outline btn-admin-modal-cancel">Batal</button>
+        <button type="button" class="btn-danger" id="btn-admin-confirm-delete-user">Hapus User + Cascade</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="assets/app.js"></script>
+</body>
+</html>

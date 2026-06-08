@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Portal — CodeDrop</title>
+  <link rel="stylesheet" href="assets/style.css">
+</head>
+<body style="background-color: var(--surface-2); display: flex; align-items: center; justify-content: center; min-height: 100vh;">
+
+  <!-- ADMIN LOGIN CARD -->
+  <div style="background-color: var(--surface); border: var(--border); box-shadow: var(--shadow-modal); max-width: 400px; width: 100%; padding: 40px; text-align: center; position: relative;">
+    
+    <div style="display: inline-block; margin-bottom: 24px;">
+      <span class="badge" style="background-color: var(--danger); color: #FFFFFF; font-size: 11px; padding: 6px 12px;">RESTRICTED ACCESS</span>
+    </div>
+
+    <h2 style="font-family: var(--font-display); font-size: 28px; margin-bottom: 8px;">CodeDrop Admin</h2>
+    <p style="color: var(--muted); font-size: 14px; margin-bottom: 32px;">Please supply administrative privileges to authenticate.</p>
+
+    <form id="admin-login-form" style="text-align: left;">
+      <div class="form-group">
+        <label for="admin-username">Username</label>
+        <input type="text" id="admin-username" placeholder="Enter admin username" required autocomplete="username">
+      </div>
+      
+      <div class="form-group" style="margin-bottom: 32px;">
+        <label for="admin-password">Password</label>
+        <input type="password" id="admin-password" placeholder="••••••••" required autocomplete="current-password">
+      </div>
+
+      <button type="submit" class="btn-dark w-full" style="padding: 12px; font-size: 16px; box-shadow: 4px 4px 0 var(--danger);">Authenticate Admin →</button>
+    </form>
+    
+    <div style="margin-top: 24px;">
+      <a href="index.html" style="font-size: 12px; color: var(--muted); font-weight: 600;">Back to home page</a>
+    </div>
+  </div>
+
+  <script src="assets/app.js"></script>
+</body>
+</html>
