@@ -160,16 +160,6 @@ let indexFilters = {
 };
 
 async function initIndexPage() {
-  // Load Stats
-  try {
-    const stats = await API.request('/api/projects/stats-placeholder', 'GET'); // We can fetch from public or custom
-  } catch (e) {
-    // We can fetch via admin route or a public route. Let's make an endpoint in public projects router or get from projects database.
-  }
-  
-  // Actually, we can fetch stats directly from the admin stats endpoint, but admin auth is required.
-  // Instead, let's create a public statistics lookup or aggregate statistics directly.
-  // Let's implement a public statistics retrieve on backend.
   loadPublicStats();
   loadPublicProjects();
   setupIndexEvents();
@@ -177,23 +167,16 @@ async function initIndexPage() {
 
 async function loadPublicStats() {
   try {
-    // We can query a simple statistics endpoint. In routes/projects.js let's add one if needed, or query count directly.
-    // Let's fetch the actual count from an endpoint GET /api/projects/stats
-    // Wait, the project schema includes a stats method. Let's load it from a public API.
-    const response = await fetch('/api/projects'); // we can also sum them locally or call a special helper
-    const projects = await response.json();
-    
-    const totalProjects = projects.length;
-    const uniqueUsers = new Set(projects.map(p => p.ownerUsername)).size;
-    const totalDownloads = projects.reduce((acc, p) => acc + (p.downloadCount || 0), 0);
+    const response = await fetch('/api/projects/stats');
+    const stats = await response.json();
     
     const projStatEl = document.getElementById('stat-total-projects');
     const userStatEl = document.getElementById('stat-total-users');
     const dlStatEl = document.getElementById('stat-total-downloads');
     
-    if (projStatEl) projStatEl.textContent = totalProjects;
-    if (userStatEl) userStatEl.textContent = uniqueUsers;
-    if (dlStatEl) dlStatEl.textContent = totalDownloads;
+    if (projStatEl) projStatEl.textContent = stats.totalProjects;
+    if (userStatEl) userStatEl.textContent = stats.totalUsers;
+    if (dlStatEl) dlStatEl.textContent = stats.totalDownloads;
   } catch (err) {
     console.error('Error loading stats', err);
   }

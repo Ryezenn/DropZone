@@ -3,6 +3,7 @@ const router = express.Router();
 const fs = require('fs');
 const path = require('path');
 const Project = require('../models/Project');
+const User = require('../models/User');
 
 // GET /api/projects - Public query (search, sort, type, username)
 router.get('/', async (req, res) => {
@@ -51,9 +52,27 @@ router.get('/', async (req, res) => {
   }
 });
 
-// GET /api/projects/stats-placeholder - Placeholder endpoint to prevent casting errors
-router.get('/stats-placeholder', (req, res) => {
-  return res.json({ status: 'ok', placeholder: true });
+// GET /api/projects/stats - Public aggregate statistics
+router.get('/stats', async (req, res) => {
+  try {
+    const totalProjects = await Project.countDocuments({ status: 'published' });
+    const totalUsers = await User.countDocuments();
+    
+    // Sum of downloads
+    const downloadStats = await Project.aggregate([
+      { $group: { _id: null, total: { $sum: "$downloadCount" } } }
+    ]);
+    const totalDownloads = downloadStats.length > 0 ? downloadStats[0].total : 0;
+
+    return res.json({
+      totalProjects,
+      totalUsers,
+      totalDownloads
+    });
+  } catch (error) {
+    console.error('Error generating public stats:', error);
+    return res.status(500).json({ message: 'Server error generating public stats.' });
+  }
 });
 
 // GET /api/projects/:id - Public details
